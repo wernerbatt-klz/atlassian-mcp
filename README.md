@@ -1,8 +1,8 @@
 # atlassian-mcp
 
-A [pi coding agent](https://github.com/badlogic/pi-mono) skill that wraps the [official Atlassian Rovo MCP server](https://github.com/atlassian/atlassian-mcp-server) as CLI calls via [mcporter](https://github.com/steipete/mcporter). No native MCP support needed — just bash.
+A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that wraps the [official Atlassian Rovo MCP server](https://github.com/atlassian/atlassian-mcp-server) as CLI calls via [mcporter](https://github.com/steipete/mcporter). No native MCP support needed — just bash.
 
-Works with any agent that can run shell commands (pi, Claude Code, Codex CLI, etc).
+Also works with [pi](https://github.com/badlogic/pi-mono), Codex CLI, or any agent that can run shell commands.
 
 ## What you get
 
@@ -62,21 +62,31 @@ npx mcporter call atlassian.getAccessibleAtlassianResources
 
 Note the `id` field — you'll need it as `cloudId` for most tool calls.
 
-## Install as a pi skill
+## Install
+
+### Claude Code (user-level)
 
 ```bash
-# User-level (all projects)
-git clone https://github.com/wernerbatt-klz/atlassian-mcp ~/.pi/agent/skills/atlassian-mcp
-
-# Or project-level
-git clone https://github.com/wernerbatt-klz/atlassian-mcp .pi/skills/atlassian-mcp
-```
-
-### Claude Code
-
-```bash
+git clone https://github.com/wernerbatt-klz/atlassian-mcp ~/atlassian-mcp
 mkdir -p ~/.claude/skills
 ln -s ~/atlassian-mcp ~/.claude/skills/atlassian-mcp
+```
+
+### Claude Code (project-level)
+
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/wernerbatt-klz/atlassian-mcp .claude/skills/atlassian-mcp
+```
+
+### pi coding agent
+
+```bash
+# User-level
+git clone https://github.com/wernerbatt-klz/atlassian-mcp ~/.pi/agent/skills/atlassian-mcp
+
+# Project-level
+git clone https://github.com/wernerbatt-klz/atlassian-mcp .pi/skills/atlassian-mcp
 ```
 
 ## Usage
@@ -107,7 +117,7 @@ See [SKILL.md](SKILL.md) for the full tool reference.
 
 ## Why not native MCP?
 
-This follows [pi's philosophy](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/): CLI tools invoked via bash are composable, token-efficient (tool descriptions load on-demand, not on every session), and work with any agent. mcporter bridges the MCP ecosystem without requiring native MCP support.
+Inspired by [pi's philosophy](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/): CLI tools invoked via bash are composable, token-efficient (tool descriptions load on-demand, not on every session), and work with any agent. [mcporter](https://github.com/steipete/mcporter) bridges the MCP ecosystem without requiring native MCP support.
 
 ## License
 
